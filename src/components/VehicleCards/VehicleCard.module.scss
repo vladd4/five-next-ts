@@ -1,0 +1,107 @@
+@import "../../styles/variables";
+
+.root {
+  width: 100%;
+  background-color: $color-white;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  padding: 1%;
+  margin-bottom: 1%;
+  transition: all 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+  .wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    &:hover .fav_button {
+      opacity: 1;
+    }
+    .fav_button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4%;
+      height: 15%;
+      opacity: 0;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    .car_block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5%;
+      width: 75%;
+      .car_image {
+        width: 80%;
+        height: 250px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 5px;
+      }
+      .car_info {
+        display: grid;
+        place-items: flex-start;
+        width: 100%;
+        h3 {
+          color: $color-dark-grey;
+          font-size: calc(#{$size}* 1.2);
+          margin: 0;
+          font-weight: 600;
+        }
+        .car_info_icons {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          place-items: flex-start;
+          width: 100%;
+          .icon_div {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            gap: 5%;
+            p {
+              color: $color-dark-grey;
+              font-size: calc(#{$size}/ 1.4);
+              margin: 10% 0%;
+            }
+            img {
+              width: 8%;
+              height: 10%;
+            }
+          }
+        }
+      }
+    }
+    .website_info {
+      display: grid;
+      width: 20%;
+      place-items: flex-start;
+      .website_img {
+        width: 85%;
+        background-position: left;
+        background-size: cover;
+        height: 80px;
+      }
+      p {
+        color: $color-dark-grey;
+        font-size: calc(#{$size}/ 1.2);
+        margin: 7% 0%;
+      }
+    }
+  }
+}
+
+.military_root {
+  background-color: $color-milk;
+}

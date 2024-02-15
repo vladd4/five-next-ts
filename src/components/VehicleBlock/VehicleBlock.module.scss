@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+
+.root {
+  width: 100%;
+  display: flex;
+  display: grid;
+  place-items: center;
+  background-color: $color-dark-grey;
+  padding: 3% 0%;
+
+  .wrapper {
+    width: 85%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3%;
+  }
+}
+
+.military_root {
+  background-color: $color-dark-green;
+}

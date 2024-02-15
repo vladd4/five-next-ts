@@ -1,0 +1,86 @@
+@import '../../styles/variables';
+
+.root {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 95svh;
+    flex-direction: column;
+    position: relative;
+    img {
+        width: 55%;
+        height: 40%;
+        z-index: 1001;
+    }
+    .wrapper {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .text_block {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 15%;
+            margin-bottom: 7%;
+            h1 {
+                font-size: calc(#{$size}*1.8);
+                text-transform: uppercase;
+                color: $color-dark-grey;
+                font-weight: 900;
+                margin: 0;
+                width: 100%;
+                text-align: center;
+                b {
+                    font-weight: 900;
+                    color: #fff;
+                    background-color: $color-orange;
+                    border-radius: 5px;
+                    padding: 0% 1%;
+                }
+            }
+            p {
+                font-size: calc(#{$size}/1.35);
+                color: $color-dark-grey;
+                text-align: center;
+                font-weight: 500;
+                max-width: 50%;
+                margin: 3% 0%;
+            }
+            button {
+                display: flex;
+                align-items: center;
+                border: none;
+                justify-content: center;
+                gap: 5%;
+                background-color: $color-dark-grey;
+                border-radius: 5px;
+                font-size: calc(#{$size}/1.35);
+                color: $color-white;
+                padding: 0.9% 0%;
+                width: 18%;
+                cursor: pointer;
+                font-family: inherit;
+                transition: all .3s;
+                &:hover {
+                    opacity: 0.8;
+                }
+                img {
+                    width: 15%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+    .line_div {
+        background: $color-orange;
+        box-shadow: 0px -4px 10px 0px rgba(0, 0, 0, 0.50);
+        height: 10svh;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+}

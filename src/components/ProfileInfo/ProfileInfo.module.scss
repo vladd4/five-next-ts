@@ -1,0 +1,78 @@
+@import '../../styles/variables';
+
+.root {
+    display: grid;
+    place-items: center;
+    width: 98%;
+    margin-top: 5%;
+    .wrapper {
+        width: 95%;
+        display: grid;
+        place-items: center;
+        .form_block {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10%;
+            width: 100%;
+            h1 {
+                color: $color-dark-grey;
+                font-size: calc(#{$size}*1.2);
+                font-weight: 500;
+            }
+            .info_input {
+                display: grid;
+                place-items: flex-start;
+                margin-bottom: 5%;
+                width: 100%;
+                input {
+                    border: 1px solid $color-dark-grey;
+                    font-size: calc(#{$size}/1.5);
+                    width: 100%;
+                    padding: 3% 5%;
+                }
+                label {
+                    font-size: calc(#{$size}/1.5);
+                    margin-bottom: 2%;
+                }
+            }
+            .form_info {
+                display: grid;
+                place-items: center;
+                width: 25%;
+            }
+            .form_social {
+                display: grid;
+                place-items: center;
+                width: 25%;
+            }
+        }
+        .button_block {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 2%;
+            margin-bottom: 3%;
+            button {
+                width: 15%;
+                font-size: calc(#{$size}/1.6);
+                border-radius: 3px;
+                border: none;
+                padding: 1% 0%;
+                color: $color-white;
+                cursor: pointer;
+                transition: all .3s;
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+            .save_button {
+                background-color: $color-orange;
+            }
+            .cancel_button {
+                background-color: $color-grey;
+            }
+        }
+    }
+}

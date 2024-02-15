@@ -1,0 +1,35 @@
+@import "../../../styles/variables";
+
+.main_button {
+  background-color: $color-orange;
+  color: $color-white;
+  border-radius: 5px;
+  border: none;
+  font-size: calc(#{$size}/ 1.4);
+  padding: 2.5% 0%;
+  width: 40%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  font-family: inherit;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 0.6;
+  }
+  img {
+    width: 5% !important;
+    height: 100% !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .main_button {
+    width: 100%;
+    font-size: 12px;
+    gap: 2%;
+    img {
+      width: 2% !important;
+    }
+  }
+}

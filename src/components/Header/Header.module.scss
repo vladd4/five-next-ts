@@ -1,0 +1,50 @@
+@import "../../styles/variables";
+
+.root {
+  width: 100%;
+  background-color: $color-dark-grey;
+  display: grid;
+  place-items: center;
+  padding: 2% 0%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+
+  .wrapper {
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+
+    .logo {
+      width: 10%;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      transform: translate(0%, -25%);
+    }
+    .icons_block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: fit-content;
+      position: relative;
+      width: 6%;
+      img {
+        width: 35%;
+        height: 100%;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+          opacity: 0.7;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+.military_root {
+  background-color: $color-dark-green;
+}

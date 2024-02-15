@@ -1,0 +1,152 @@
+@import "../../styles/variables";
+
+.root {
+  width: 25%;
+  display: grid;
+  place-items: center;
+  background-color: $color-grey;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding-bottom: 2%;
+  .wrapper {
+    width: 85%;
+    display: grid;
+    place-items: center;
+    .accordions {
+      display: grid;
+      width: 100%;
+      place-items: flex-start;
+      margin-bottom: 15%;
+      select {
+        font-size: calc(#{$size}/ 1.3);
+        color: $color-white;
+        border: none;
+        border-bottom: 1px solid $color-white;
+        width: 100%;
+        padding: 2% 5%;
+        background-color: transparent;
+        margin-top: 10%;
+        margin-bottom: 3%;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+      option {
+        font-size: calc(#{$size}/ 1.4);
+        color: $color-white;
+        background-color: $color-dark-grey;
+      }
+    }
+    .button_block_wrapper {
+      width: 100%;
+      display: grid;
+      place-items: center;
+      p {
+        color: #f1f1f180;
+        font-size: calc(#{$size}/ 1.4);
+        border-bottom: 1px solid #f1f1f180;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          color: $color-white;
+          border-color: $color-white;
+        }
+      }
+      .button_block {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1%;
+        .search_button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 2%;
+          background-color: $color-orange;
+          color: $color-white;
+          font-size: calc(#{$size}/ 1.4);
+          border-radius: 5px;
+          border: none;
+          width: 75%;
+          padding: 4% 0%;
+          cursor: pointer;
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.7;
+          }
+          img {
+            width: 18%;
+            height: 18%;
+          }
+        }
+        .add_button {
+          background: linear-gradient(48deg, #ff3d83 0%, #ff7bab 100%);
+          border-radius: 5px;
+          border: none;
+          width: 25%;
+          padding: 5.3% 0%;
+          cursor: pointer;
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.7;
+          }
+          img {
+            width: 30%;
+            height: 30%;
+          }
+        }
+      }
+    }
+  }
+}
+.accordion {
+  width: 100%;
+}
+.accordionHeader {
+  font-size: calc(#{$size}/ 1.3);
+  color: $color-white;
+  border: none;
+  border-bottom: 1px solid $color-white;
+  width: 100%;
+  padding: 2% 5%;
+  background-color: transparent;
+  margin-top: 10%;
+  margin-bottom: 3%;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:hover {
+    opacity: 0.6;
+  }
+  img {
+    width: 6%;
+    height: 6%;
+  }
+}
+.accordionContent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input {
+    width: 45%;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: calc(#{$size}/ 1.45);
+    padding: 1% 1.5%;
+  }
+}
+
+.military_root {
+  background-color: $color-green;
+}

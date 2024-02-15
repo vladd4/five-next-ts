@@ -1,0 +1,93 @@
+@import '../../styles/variables';
+
+.root {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-dark-grey;
+    padding: 5% 0%;
+    padding-top: 7%;
+    position: relative;
+    .wrapper {
+        width: 75%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        h5 {
+            color: $color-white;
+            font-size: calc(#{$size}*1.7);
+            text-transform: uppercase;
+            font-weight: 900;
+            margin: 0;
+            margin-bottom: 2%;
+        }
+        .steps_block {
+            width: 65%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            justify-content: space-between;
+            color: $color-white;
+            .step_div {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                z-index: 2;
+            }
+            .circle {
+                height: 20px;
+                width: 20px;
+                border-radius: 50px;
+                background-color: $color-white;
+            }
+            .active_circle {
+                background-color: $color-orange;
+            }
+            .line {
+                width: 92%;
+                position: absolute;
+                height: 1.5px;
+                background-color: transparent;
+                top: 84%;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1;
+                border-bottom: 2px dashed $color-white;
+            }
+        }
+        .text_block {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 3%;
+            .text {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                max-width: 50%;
+                h5 {
+                    text-transform: capitalize;
+                    font-size: calc(#{$size}*1.5);
+                    font-weight: 800;
+                    margin: 0;
+                    border-bottom: 2px solid $color-orange;
+                }
+                p {
+                    color: $color-white;
+                    margin: 5% 0%;
+                    font-size: calc(#{$size}/1.35);
+                }
+                
+            }
+            img {
+                width: 40%;
+                height: 100%;
+            }
+        }
+    }
+}

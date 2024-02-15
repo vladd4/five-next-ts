@@ -1,0 +1,232 @@
+@import "../../styles/variables";
+
+.root {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-dark-grey;
+  padding: 4% 0%;
+  border-bottom: 1px solid $color-white;
+  .wrapper {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    h5 {
+      color: $color-white;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: calc(#{$size}* 1.7);
+      margin: 0;
+      margin-bottom: 3%;
+    }
+    .form_block {
+      width: 100%;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      color: $color-white;
+      gap: 5%;
+      p {
+        font-size: calc(#{$size}* 1.45);
+        font-weight: 600;
+        max-width: 50%;
+        b {
+          color: $color-orange;
+        }
+      }
+      form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        div {
+          position: relative;
+          width: 95%;
+          label {
+            position: absolute;
+            top: 50%;
+            background-color: $color-dark-grey;
+            left: 5%;
+            transform: translateY(-50%);
+            font-size: calc(#{$size}/ 1.5);
+            transition: all 0.3s;
+          }
+          input {
+            width: 90%;
+            padding: 6% 5%;
+            background-color: transparent;
+            border: 1px solid $color-white;
+            color: $color-white;
+            outline: none;
+            font-size: calc(#{$size}/ 1.45);
+            font-family: inherit;
+          }
+        }
+        .textarea_div {
+          position: relative;
+          width: 100%;
+          label {
+            position: absolute;
+            top: 15%;
+            left: 3%;
+            transform: translateY(-50%);
+            font-size: calc(#{$size}/ 1.5);
+            transition: all 0.3s;
+          }
+          textarea {
+            width: 94%;
+            padding: 2% 3%;
+            background-color: transparent;
+            border: 1px solid $color-white;
+            color: $color-white;
+            outline: none;
+            font-family: inherit;
+            resize: none;
+            height: 80px;
+            font-size: calc(#{$size}/ 1.45);
+            margin-bottom: 5%;
+          }
+        }
+        .name_input_div,
+        .mail_input_div {
+          input {
+            &:focus {
+              + {
+                label {
+                  font-size: calc(#{$size}/ 2);
+                  top: 0%;
+                }
+              }
+            }
+            &:valid {
+              + {
+                label {
+                  font-size: calc(#{$size}/ 2);
+                  top: 0%;
+                }
+              }
+            }
+          }
+        }
+        .textarea_div {
+          textarea {
+            &:focus {
+              + {
+                label {
+                  font-size: calc(#{$size}/ 2);
+                  top: 0%;
+                }
+              }
+            }
+            &:valid {
+              + {
+                label {
+                  font-size: calc(#{$size}/ 2);
+                  top: 0%;
+                }
+              }
+            }
+          }
+        }
+        .first_row {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 5%;
+          margin-bottom: 5%;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .root {
+    .wrapper {
+      .form_block {
+        flex-direction: column;
+        p {
+          max-width: 100%;
+          margin-bottom: 5%;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .root {
+    .wrapper {
+      width: 90%;
+      h5 {
+        font-size: 22px;
+        margin-bottom: 0%;
+      }
+      .form_block {
+        p {
+          font-size: 20px;
+        }
+        form {
+          div {
+            label {
+              font-size: 12px;
+            }
+            input {
+              font-size: 12px;
+            }
+          }
+          .mail_input_div,
+          .name_input_div {
+            input {
+              &:focus {
+                + {
+                  label {
+                    font-size: 9px;
+                    top: 0%;
+                  }
+                }
+              }
+              &:valid {
+                + {
+                  label {
+                    font-size: 9px;
+                    top: 0%;
+                  }
+                }
+              }
+            }
+          }
+          .textarea_div {
+            label {
+              font-size: 12px;
+            }
+            textarea {
+              font-size: 12px;
+            }
+            textarea {
+              &:focus {
+                + {
+                  label {
+                    font-size: 9px;
+                    top: 0%;
+                  }
+                }
+              }
+              &:valid {
+                + {
+                  label {
+                    font-size: 9px;
+                    top: 0%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
