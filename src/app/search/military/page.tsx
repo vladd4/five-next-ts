@@ -1,11 +1,11 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
-
 import SearchPage from "@/components/SearchPage/SearchPage";
 
+import { checkSession } from "@/utils/chechSession";
+import { redirect } from "next/navigation";
+
 export default async function MilitaryPage() {
-  const session = await getServerSession(authOptions);
+  const session = await checkSession();
+
   if (!session) {
     redirect("/");
   }

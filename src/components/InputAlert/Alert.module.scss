@@ -1,0 +1,60 @@
+@import "../../styles/variables";
+
+.root {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  background-color: $color-grey;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px #00000040;
+  padding: 2% 0%;
+  z-index: 1002;
+  transition: all 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  .wrapper {
+    width: 90%;
+    h5 {
+      color: $color-white;
+      font-size: calc(#{$size}* 1.1);
+      width: 100%;
+      text-align: center;
+    }
+    form {
+      width: 100%;
+      display: grid;
+      place-items: center;
+      input {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid $color-white;
+        outline: none;
+        padding: 2%;
+        margin: 3% 0%;
+      }
+      div {
+        width: 100%;
+        display: flex;
+        gap: 5%;
+        align-items: center;
+        justify-content: space-between;
+        button {
+          flex: 1;
+          &:first-child {
+            background-color: $color-dark-grey;
+            border: 1px solid $color-dark-grey;
+          }
+        }
+      }
+    }
+  }
+}
+
+.show_alert {
+  opacity: 1;
+  pointer-events: auto;
+}

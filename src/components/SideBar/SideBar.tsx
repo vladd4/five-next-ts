@@ -57,10 +57,6 @@ type SavedItem = {
   type_id?: number;
   min_year?: string;
   max_year?: string;
-  min_mileage?: string;
-  max_mileage?: string;
-  min_power?: string;
-  max_power?: string;
   gearbox_id?: number;
   state_id?: number;
   telegram: boolean;
@@ -193,17 +189,17 @@ export default function SideBar() {
     if (user) {
       const params: SavedItem = {
         client_id: user?.id,
-        max_price: "10000",
-        min_price: "7000",
-        min_year: "2015",
-        max_year: "2022",
-        min_mileage: "2015",
-        max_mileage: "2022",
-        max_power: "100",
-        min_power: "190",
-        telegram: Boolean(0),
+        telegram: Boolean(1),
       };
 
+      if (year) {
+        params.min_year = year.from;
+        params.max_year = year.to;
+      }
+      if (price) {
+        params.min_price = price.from;
+        params.max_price = price.to;
+      }
       if (selectedBrand) {
         params.brand_id = selectedBrand.id;
       }

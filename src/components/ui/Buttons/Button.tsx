@@ -9,26 +9,31 @@ import Arrow from "@/../public/up.png";
 type ButtonProps = {
   label: string;
   buttonType: "submit" | "button";
+  withoutArrow?: boolean;
+  eventHandler?: () => void;
 };
 
-function Button({ label, buttonType }: ButtonProps) {
-  const handleClick = () => {
-    console.log("click");
-  };
-
+function Button({
+  label,
+  buttonType,
+  withoutArrow,
+  eventHandler,
+}: ButtonProps) {
   return (
     <button
       type={buttonType}
       className={styles.main_button}
-      onClick={handleClick}
+      onClick={eventHandler}
     >
-      <Image
-        className={styles.button_image}
-        alt="Arrow Up"
-        width={15}
-        height={15}
-        src={Arrow}
-      />
+      {withoutArrow ? null : (
+        <Image
+          className={styles.button_image}
+          alt="Arrow Up"
+          width={15}
+          height={15}
+          src={Arrow}
+        />
+      )}
       {label}
     </button>
   );

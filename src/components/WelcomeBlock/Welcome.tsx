@@ -42,7 +42,13 @@ export default function WelcomeBlock() {
           </button>
         </div>
       </article>
-      <Image alt="Main Image" src={Porsh} width={3500} height={900} />
+      <Image
+        className={styles.car}
+        alt="Main Image"
+        src={Porsh}
+        width={3500}
+        height={900}
+      />
       <div className={styles.line_div}></div>
     </section>
   );

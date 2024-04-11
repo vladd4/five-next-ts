@@ -5,7 +5,7 @@ import styles from "./UserPopup.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { fetchUser } from "@/redux/slices/userSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hook";
@@ -15,16 +15,27 @@ import { useMilitaryPath } from "@/hooks/useMilitaryPath";
 import { signOut, useSession } from "next-auth/react";
 
 import Profile from "@/../public/profile.png";
+import useClickOutside from "@/hooks/useClickOutside";
 
 type UserPopup = {
   showPopup: boolean;
+  setShowPopup: (arg: boolean) => void;
 };
 
-export default function UserPopup({ showPopup }: UserPopup) {
+export default function UserPopup({ showPopup, setShowPopup }: UserPopup) {
   const isMilitary = useMilitaryPath();
   const dispatch = useAppDispatch();
   const { data: session } = useSession();
   const { user } = useAppSelector((state) => state.user);
+
+  const popupRef = useRef(null);
+
+  useClickOutside(
+    popupRef,
+    showPopup,
+    setShowPopup,
+    document?.getElementById("userPopup")
+  );
 
   useEffect(() => {
     if (session) {
@@ -33,6 +44,7 @@ export default function UserPopup({ showPopup }: UserPopup) {
   }, [dispatch, session]);
   return (
     <article
+      ref={popupRef}
       className={`${styles.root} ${showPopup ? styles.show_popup : ""} ${
         isMilitary ? styles.military_root : ""
       }`}

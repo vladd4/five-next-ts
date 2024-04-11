@@ -17,7 +17,6 @@ import ProfileSkeleton from "../ProfileSkeleton";
 
 export default function ProfilePage() {
   const { user } = useAppSelector((state) => state.user);
-  const { saved } = useAppSelector((state) => state.saved);
   const dispatch = useAppDispatch();
   const { data: session } = useSession();
 
@@ -32,10 +31,12 @@ export default function ProfilePage() {
   }, [session]);
   return (
     <section className={styles.root}>
-      {user && <ProfileSide user={user} />}
-      <article className={styles.dynamic_block}>
-        {user ? <ProfileInfo user={user} /> : <ProfileSkeleton />}
-        <SavedSearch saved={saved} />
+      <article className={styles.wrapper}>
+        <article className={styles.dynamic_block}>
+          {user ? <ProfileInfo user={user} /> : <ProfileSkeleton />}
+          {user && <ProfileSide user={user} />}
+        </article>
+        <SavedSearch />
       </article>
     </section>
   );

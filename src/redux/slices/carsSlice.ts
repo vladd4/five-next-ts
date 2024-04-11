@@ -46,14 +46,14 @@ type Filters = {
 }
 
 export const fetchCars = createAsyncThunk<Car[]>("cars/fetchCars", async () => {
-  const data = await axios.get("http://localhost:5000/cars");
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/cars`);
   return data.data;
 });
 
 export const fetchFilterCars = createAsyncThunk<Car[], Filters>(
   "cars/fetchFilterCars",
   async (params) => {
-    const data = await axios.post("http://localhost:5000/cars", params);
+    const data = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API}/cars`, params);
     return data.data;
   }
 );

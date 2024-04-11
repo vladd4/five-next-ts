@@ -8,7 +8,7 @@
   place-items: center;
   border-radius: 5px;
   z-index: 1001;
-  width: 220px;
+  width: 250px;
   padding-top: 7%;
   padding-bottom: 5%;
   display: none;
@@ -19,7 +19,7 @@
     .user_logo_block {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       padding: 0% 5%;
       gap: 5%;
       width: 100%;
@@ -30,9 +30,10 @@
         width: fit-content;
       }
       .user_avatar {
-        width: 25%;
+        width: 22%;
         height: 100%;
         pointer-events: none;
+        border-radius: 50px;
       }
     }
     p,
@@ -40,7 +41,7 @@
       color: $color-dark-grey;
       text-decoration: none;
       font-size: calc(#{$size}/ 1.4);
-      margin-bottom: 1%;
+      margin-bottom: 3%;
       padding-left: 5%;
       cursor: pointer;
       transition: all 0.3s;

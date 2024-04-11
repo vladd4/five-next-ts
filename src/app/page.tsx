@@ -4,13 +4,15 @@ import HowWorks from "@/components/HowWorks/HowWorks";
 import Sites from "@/components/SitesSlider/Sites";
 import WelcomeBlock from "@/components/WelcomeBlock/Welcome";
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { checkSession } from "@/utils/chechSession";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
-  if (session) redirect("/search");
+  const session = await checkSession();
+
+  if (session) {
+    redirect("/search");
+  }
   return (
     <>
       <WelcomeBlock />

@@ -4,8 +4,18 @@ import styles from "./ProfileInfo.module.scss";
 
 import { useState } from "react";
 
-import { fetchUser, updateUser } from "@/redux/slices/userSlice";
 import { useAppDispatch } from "@/hooks/redux-hook";
+import Image from "next/image";
+
+import PlusIcon from "@/../public/plus.png";
+import EditIcon from "@/../public/edit.png";
+
+import {
+  setEditValue,
+  setIsEdit,
+  setIsTelegram,
+  setShowInputAlert,
+} from "@/redux/slices/alertSlice";
 
 type ProfileProps = {
   user: {
@@ -18,41 +28,30 @@ type ProfileProps = {
   };
 };
 
-type UpdateUser = {
-  userId: number;
-  name: string;
-  phone?: string;
-  email: string;
-  telegram?: string;
-};
-
 export default function ProfileInfo({ user }: ProfileProps) {
   const dispatch = useAppDispatch();
 
-  const [name, setName] = useState(user.name);
-  const [phone, setPhone] = useState(user.phone);
-  const [email, setEmail] = useState(user.email);
-  const [telegram, setTelegram] = useState(user.telegram);
+  const [name] = useState(user.name);
+  const [phone] = useState(user.phone);
+  const [email] = useState(user.email);
+  const [telegram] = useState(user.telegram);
 
-  const handleUpdate = async () => {
-    const params: UpdateUser = {
-      userId: user.id,
-      name,
-      email,
-    };
-    if (phone) {
-      params.phone = phone;
+  const handleShowAlert = (isTelegram: boolean) => {
+    if (isTelegram) {
+      dispatch(setIsTelegram(true));
+    } else {
+      dispatch(setIsTelegram(false));
     }
-    if (telegram) {
-      params.telegram = telegram;
-    }
-    await dispatch(updateUser(params));
-    dispatch(fetchUser(user.email));
+    dispatch(setShowInputAlert(true));
   };
 
-  const handleResetUpdate = () => {
-    dispatch(fetchUser(user.email));
+  const handleShowEdit = (value: "name" | "phone" | "telegram") => {
+    dispatch(setIsEdit(true));
+    dispatch(setEditValue(value));
+    dispatch(setIsTelegram(false));
+    dispatch(setShowInputAlert(true));
   };
+
   return (
     <section className={styles.root}>
       <article className={styles.wrapper}>
@@ -60,52 +59,85 @@ export default function ProfileInfo({ user }: ProfileProps) {
           <div className={styles.form_info}>
             <h1>Інформація</h1>
             <div className={styles.info_input}>
-              <label className={styles.input_label}>First name</label>
-              <input
-                placeholder="Name"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+              <div className={styles.edit_div}>
+                <label className={styles.input_label}>First name</label>
+                <Image
+                  src={EditIcon}
+                  alt="Edit"
+                  width={12}
+                  height={12}
+                  onClick={() => handleShowEdit("name")}
+                />
+              </div>
+
+              <input placeholder="Name" name="name" value={name} readOnly />
             </div>
-            <div className={styles.info_input}>
-              <label className={styles.input_label}>Phone</label>
-              <input
-                placeholder="Phone"
-                name="phone"
-                value={phone ? phone : ""}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
+
             <div className={styles.info_input}>
               <label className={styles.input_label}>Email</label>
-              <input
-                placeholder="Email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <input placeholder="Email" name="email" readOnly value={email} />
             </div>
           </div>
           <div className={styles.form_social}>
             <h1>Соц. мережі</h1>
-            <div className={styles.info_input}>
-              <label className={styles.input_label}>Telegram</label>
-              <input
-                placeholder="Telegram"
-                value={telegram ? telegram : ""}
-                onChange={(e) => setTelegram(e.target.value)}
-              />
-            </div>
+
+            {user && user.phone ? (
+              <div className={styles.info_input}>
+                <div className={styles.edit_div}>
+                  <label className={styles.input_label}>Phone</label>
+                  <Image
+                    src={EditIcon}
+                    alt="Edit"
+                    width={12}
+                    height={12}
+                    onClick={() => handleShowEdit("phone")}
+                  />
+                </div>
+
+                <input
+                  placeholder="Phone"
+                  name="phone"
+                  readOnly
+                  value={phone ? phone : ""}
+                />
+              </div>
+            ) : (
+              <div
+                className={styles.info_input_add}
+                onClick={() => handleShowAlert(false)}
+              >
+                <Image width={20} height={20} alt="Plus" src={PlusIcon} />
+                <p>Додати телефон</p>{" "}
+              </div>
+            )}
+            {user && user.telegram ? (
+              <div className={styles.info_input}>
+                <div className={styles.edit_div}>
+                  <label className={styles.input_label}>Telegram</label>
+                  <Image
+                    src={EditIcon}
+                    alt="Edit"
+                    width={12}
+                    height={12}
+                    onClick={() => handleShowEdit("telegram")}
+                  />
+                </div>
+                <input
+                  placeholder="Telegram"
+                  readOnly
+                  value={telegram ? telegram : ""}
+                />
+              </div>
+            ) : (
+              <div
+                className={styles.info_input_add}
+                onClick={() => handleShowAlert(true)}
+              >
+                <Image width={20} height={20} alt="Plus" src={PlusIcon} />
+                <p>Додати telegram</p>{" "}
+              </div>
+            )}
           </div>
-        </div>
-        <div className={styles.button_block}>
-          <button onClick={handleUpdate} className={styles.save_button}>
-            Зберегти
-          </button>
-          <button onClick={handleResetUpdate} className={styles.cancel_button}>
-            Скасувати
-          </button>
         </div>
       </article>
     </section>

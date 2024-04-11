@@ -1,53 +1,194 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .root {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  h1 {
     width: 100%;
+    text-align: start;
+    color: $color-white;
+    font-size: calc(#{$size}* 1.2);
+    font-weight: 500;
+    margin: 1.5% 0%;
+  }
+  .wrapper {
+    width: 100%;
+    background-color: $color-grey;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px #00000040;
+    padding-left: 1%;
+    color: $color-white;
+    padding-right: 1%;
+    .all_buttons {
+      width: 25%;
+      display: none;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 1%;
+      gap: 2%;
+      button {
+        padding: 1.5% 0%;
+        &:first-child {
+          background-color: $color-dark-grey;
+          border: 1px solid $color-dark-grey;
+        }
+      }
+    }
+    .show_buttons {
+      display: flex;
+    }
+    .table {
+      width: 100%;
+
+      thead {
+        padding: 0% 2%;
+        padding-left: 7%;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #b3b3b3;
+      }
+
+      td {
+        padding: 1% 0%;
+        text-align: center;
+        font-size: calc(#{$size}/ 1.65);
+      }
+      tr {
+        border-bottom: 1px solid #b3b3b3;
+      }
+      th {
+        text-align: center;
+        font-size: calc(#{$size}/ 1.5);
+        margin: 0;
+        padding-bottom: 1%;
+        font-weight: 500;
+      }
+      .telegram {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8%;
+      }
+    }
+    .heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 1px solid #b3b3b3;
+      padding: 0% 2%;
+      padding-left: 7%;
+      padding-bottom: 1%;
+      h3 {
+        font-size: calc(#{$size}/ 1.6);
+        margin: 0;
+        font-weight: 550;
+      }
+    }
+    .values {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0%;
+      width: 100%;
+      padding: 1% 2%;
+      margin-bottom: 0.5%;
+      div {
+        display: flex;
+        align-items: center;
+      }
+      p {
+        font-size: calc(#{$size}/ 1.75);
+        margin: 0;
+        text-align: start;
+        font-weight: 400;
+      }
+    }
+    .delete {
+      width: 30%;
+      height: 30%;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    .no_saved {
+      font-size: calc(#{$size}/ 1.4);
+      width: 100%;
+      margin-top: 1%;
+    }
+  }
+  .checkbox_div {
+    width: 35%;
+    gap: 0;
+    background-color: $color-orange;
+    border-radius: 50px;
+    border: 1px solid $color-dark-grey;
+    height: 25px;
     display: grid;
     place-items: center;
-    .wrapper {
-        width: 93%;
-        background-color: #DADADA;
-        padding-top: 1%;
-        padding-bottom: 1%;
-        padding-left: 1%;
-        padding-right: 1%;
-        .heading {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            border-bottom: 1px solid $color-dark-grey;
-            padding-left: 5%;
-            padding-bottom: 1%;
-            h3 {
-                font-size: calc(#{$size}/1.6);
-                margin: 0;
-                font-weight: 550;
-            }
-        }
-        .values {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            padding-top: 1%;
-            div {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            p {
-                font-size: calc(#{$size}/1.75);
-                margin: 0;
-                font-weight: 400;
-            }
-        }
-        img {
-            width: 1.5%;
-            height: 1.5%;
-            cursor: pointer;
-            transition: all .3s;
-            &:hover {
-                opacity: 0.7;
-            }
-        }
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      opacity: 0.7;
     }
+    input {
+      width: auto;
+      border-radius: 50px !important;
+    }
+    .circle {
+      width: 20px;
+      height: 20px;
+      background-color: $color-dark-grey;
+      border-radius: 50px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 2%;
+      transition: all 0.3s;
+    }
+    .circle_off {
+      left: 2%;
+      background-color: $color-dark-grey;
+      transition: all 0.3s;
+    }
+  }
+  .not_checked {
+    background-color: $color-white;
+  }
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    gap: 10px;
+    width: 75%;
+  }
+  .checkbox_input {
+    height: 20px;
+    border: 1px solid $color-white;
+    width: 20px;
+    display: grid !important;
+    place-items: center !important;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      opacity: 0.7;
+    }
+    span {
+      font-size: calc(#{$size}/ 1.8);
+      transition: all 0.3s;
+      opacity: 0;
+      margin: 0;
+    }
+    .ticked {
+      opacity: 1;
+    }
+  }
+  .selected {
+    background: rgba(0, 0, 0, 0.2);
+  }
 }

@@ -1,7 +1,6 @@
 import styles from "./ProfileSide.module.scss";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import Profile from "@/../public/profile.png";
 
@@ -18,6 +17,7 @@ type ProfileProps = {
 export default function ProfileSide({ user }: ProfileProps) {
   return (
     <aside className={styles.root}>
+      <h1>Профіль</h1>
       <article className={styles.wrapper}>
         <Image
           width={300}
@@ -28,8 +28,6 @@ export default function ProfileSide({ user }: ProfileProps) {
 
         <h2>{user ? user.name : "Loading..."}</h2>
         <p>{user ? user.email : "Loading..."}</p>
-
-        <Link href="/search">Повернутись на головну</Link>
       </article>
     </aside>
   );

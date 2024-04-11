@@ -20,14 +20,14 @@ interface FiltersSlice extends Filters {
 }
 
 export const fetchBrands = createAsyncThunk<TValue[]>("filters/fetchBrands", async () => {
-  const data = await axios.get("http://localhost:5000/filters/brands");
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/brands`);
   return data.data;
 });
 
 export const fetchModels = createAsyncThunk<TValue[], string>(
   "filters/fetchModels",
   async (brand) => {
-    const data = await axios.get("http://localhost:5000/filters/models", {
+    const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/models`, {
       params: { brand },
     });
     return data.data;
@@ -35,22 +35,22 @@ export const fetchModels = createAsyncThunk<TValue[], string>(
 );
 
 export const fetchFuel = createAsyncThunk<TValue[]>("filters/fetchFuel", async () => {
-  const data = await axios.get("http://localhost:5000/filters/fuel");
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/fuel`);
   return data.data;
 });
 
 export const fetchGear = createAsyncThunk<TValue[]>("filters/fetchGear", async () => {
-  const data = await axios.get("http://localhost:5000/filters/gear");
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/gear`);
   return data.data;
 });
 
 export const fetchState = createAsyncThunk<TValue[]>("filters/fetchState", async () => {
-  const data = await axios.get("http://localhost:5000/filters/state");
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/state`);
   return data.data;
 });
 
 export const fetchType = createAsyncThunk<TValue[]>("filters/fetchType", async () => {
-  const data = await axios.get("http://localhost:5000/filters/type");
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/type`);
   return data.data;
 });
 

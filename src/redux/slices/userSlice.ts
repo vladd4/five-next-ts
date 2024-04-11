@@ -14,7 +14,6 @@ type UpdateUser = {
   userId: number
   name?: string;
   phone?: string;
-  email?: string;
   telegram?: string 
 }
 
@@ -24,7 +23,7 @@ type UserSlice = {
 }
 
 export const fetchUser = createAsyncThunk<User, string>("users/fetchUser", async (email) => {
-  const data = await axios.get(`http://localhost:5000/user/${email}`);
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/${email}`);
   return data.data;
 });
 
@@ -32,7 +31,7 @@ export const updateUser = createAsyncThunk<User, UpdateUser>(
   "users/updateUser",
   async (params) => {
     const data = await axios.post(
-      `http://localhost:5000/user/edit/${params.userId}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/user/edit/${params.userId}`,
       params
     );
     return data.data;

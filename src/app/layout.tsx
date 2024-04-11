@@ -11,8 +11,8 @@ import Footer from "@/components/Footer/Footer";
 const montserrat = Montserrat({ subsets: ["latin"], display: "fallback" });
 
 export const metadata = {
-  title: "FiVe | Find your vehicle",
-  description: "FiVe | Find your vehicle",
+  title: "FiVe | Find your own vehicle",
+  description: "FiVe | Find your own vehicle",
 };
 
 type RootProps = {

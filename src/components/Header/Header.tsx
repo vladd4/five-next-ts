@@ -13,6 +13,8 @@ import Message from "@/../public/message.png";
 import User from "@/../public/user.png";
 
 import UserPopup from "./UserPopup";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function Header() {
   const [showPopup, setShowPopup] = useState(false);
@@ -28,14 +30,16 @@ export default function Header() {
       className={`${styles.root} ${isMilitary ? styles.military_root : ""}`}
     >
       <article className={styles.wrapper}>
-        <Image
-          alt="FiVe"
-          src={Logo}
-          className={styles.logo}
-          width={160}
-          height={112}
-          priority
-        />
+        <Link href="/search">
+          <Image
+            alt="FiVe"
+            src={Logo}
+            className={styles.logo}
+            width={160}
+            height={112}
+            priority
+          />
+        </Link>
         <div className={styles.icons_block}>
           <Image alt="Message" src={Message} width={33} height={30} />
           <Image
@@ -44,8 +48,9 @@ export default function Header() {
             width={33}
             height={33}
             onClick={handleShowPopup}
+            id="userPopup"
           />
-          <UserPopup showPopup={showPopup} />
+          <UserPopup showPopup={showPopup} setShowPopup={setShowPopup} />
         </div>
       </article>
     </header>
