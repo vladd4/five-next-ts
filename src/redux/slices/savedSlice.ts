@@ -20,6 +20,19 @@ type AddSavedItem = {
   telegram: boolean;
 };
 
+type EditSaved = {
+  model_id?: number;
+  min_price?: string;
+  max_price?: string;
+  fuel_id?: number;
+  type_id?: number;
+  min_year?: string;
+  max_year?: string;
+  gearbox_id?: number;
+  state_id?: number;
+  userID: number;
+};
+
 type SavedItem = {
   id: number;
   brand: string | null;
@@ -38,6 +51,7 @@ type SavedItem = {
 type SavedSlice = {
   saved: SavedItem[];
   selectedSave: number[];
+  editSaved: SavedItem | null;
   status: "loading" | "loaded";
 };
 
@@ -52,9 +66,20 @@ export const addToSaved = createAsyncThunk<SavedItem, AddSavedItem>(
   }
 );
 
-export const updateSaved = createAsyncThunk<
+export const updateSavedTelegram = createAsyncThunk<
   SavedItem,
   { savedID: number; params: { telegram: 0 | 1 } }
+>("saved/updateSavedTelegram", async ({ savedID, params }) => {
+  const data = await axios.put(
+    `${process.env.NEXT_PUBLIC_BACKEND_API}/saved/telegram/${savedID}`,
+    params
+  );
+  return data.data;
+});
+
+export const updateSaved = createAsyncThunk<
+  SavedItem[],
+  { savedID: number; params: EditSaved }
 >("saved/updateSaved", async ({ savedID, params }) => {
   const data = await axios.put(
     `${process.env.NEXT_PUBLIC_BACKEND_API}/saved/${savedID}`,
@@ -86,6 +111,7 @@ export const deleteSaved = createAsyncThunk<number, number>(
 const initialState: SavedSlice = {
   saved: [],
   selectedSave: [],
+  editSaved: null,
   status: "loading",
 };
 
@@ -105,6 +131,9 @@ export const savedSlice = createSlice({
     },
     resetSelected: (state) => {
       state.selectedSave = [];
+    },
+    setEditSaved: (state, action: PayloadAction<SavedItem>) => {
+      state.editSaved = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -143,10 +172,20 @@ export const savedSlice = createSlice({
       .addCase(deleteSaved.rejected, (state) => {
         state.status = "loading";
       })
+      .addCase(updateSavedTelegram.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateSavedTelegram.fulfilled, (state) => {
+        state.status = "loaded";
+      })
+      .addCase(updateSavedTelegram.rejected, (state) => {
+        state.status = "loading";
+      })
       .addCase(updateSaved.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(updateSaved.fulfilled, (state) => {
+      .addCase(updateSaved.fulfilled, (state, action) => {
+        state.saved = action.payload;
         state.status = "loaded";
       })
       .addCase(updateSaved.rejected, (state) => {
@@ -154,5 +193,5 @@ export const savedSlice = createSlice({
       });
   },
 });
-export const { setSelected, resetSelected } = savedSlice.actions;
+export const { setSelected, resetSelected, setEditSaved } = savedSlice.actions;
 export default savedSlice.reducer;

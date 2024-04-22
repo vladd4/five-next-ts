@@ -5,6 +5,7 @@ import SavedSkeleton from "../SavedSkeleton";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hook";
 import Button from "../ui/Buttons/Button";
 import { deleteSaved, resetSelected } from "@/redux/slices/savedSlice";
+import { setShowConfirmAlert } from "@/redux/slices/alertSlice";
 
 const headings = [
   "",
@@ -22,15 +23,6 @@ const headings = [
 export default function SavedSearch() {
   const savedSlice = useAppSelector((state) => state.saved);
   const dispatch = useAppDispatch();
-
-  const handleDeleteSelected = () => {
-    if (savedSlice.selectedSave && savedSlice.selectedSave.length >= 1) {
-      savedSlice.selectedSave.forEach((item) => {
-        dispatch(deleteSaved(item));
-      });
-      dispatch(resetSelected());
-    }
-  };
 
   return (
     <article className={styles.root}>
@@ -81,7 +73,7 @@ export default function SavedSearch() {
             label="Видалити"
             buttonType="button"
             withoutArrow
-            eventHandler={handleDeleteSelected}
+            eventHandler={() => dispatch(setShowConfirmAlert(true))}
           />
         </div>
       </div>

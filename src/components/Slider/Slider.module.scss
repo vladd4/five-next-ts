@@ -40,3 +40,63 @@
     }
   }
 }
+
+@media screen and (max-width: 800px) {
+  .root {
+    .article {
+      .text_block {
+        width: 50%;
+        p {
+          width: 95%;
+          img {
+            display: none;
+          }
+        }
+      }
+      img {
+        width: 40%;
+        height: 40%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .root {
+    padding-bottom: 4%;
+    padding-top: 3%;
+    .article {
+      flex-direction: column;
+      .text_block {
+        width: 100%;
+        margin-bottom: 5%;
+        h3 {
+          font-size: 27px;
+          text-align: center;
+        }
+        p {
+          width: 95%;
+          text-align: center;
+          justify-content: center;
+          font-size: 16px;
+          img {
+            display: none;
+          }
+        }
+      }
+      img {
+        width: 65%;
+        height: 65%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 450px) {
+  .root {
+    .article {
+      img {
+        width: 85%;
+        height: 85%;
+      }
+    }
+  }
+}

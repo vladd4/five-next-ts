@@ -15,6 +15,7 @@ import {
   fetchModels,
   fetchState,
   fetchType,
+  setShowFilters,
 } from "../../redux/slices/filtersSlice";
 import { addToSaved } from "@/redux/slices/savedSlice";
 import { setShowAlert } from "@/redux/slices/alertSlice";
@@ -107,6 +108,8 @@ export default function SideBar() {
   const gearOptions = useAppSelector((state) => state.filters.gear);
   const stateOptions = useAppSelector((state) => state.filters.state);
 
+  const showFilters = useAppSelector((state) => state.filters.showFilters);
+
   const filterCars = () => {
     const filters: Filters = {};
     if (brand !== "brand") {
@@ -146,6 +149,7 @@ export default function SideBar() {
       };
     }
     dispatch(fetchFilterCars(filters));
+    dispatch(setShowFilters(false));
   };
   const [isPowerOpen, setPowerOpen] = useState(false);
   const [isYearOpen, setYearOpen] = useState(false);
@@ -158,6 +162,7 @@ export default function SideBar() {
     setStateOpen(!stateOpen);
   };
   const clearFilter = () => {
+    dispatch(setShowFilters(false));
     dispatch(fetchCars());
     setBrand("brand");
     setFuel("fuel");
@@ -220,6 +225,7 @@ export default function SideBar() {
       }
       dispatch(addToSaved(params));
       dispatch(setShowAlert(true));
+      dispatch(setShowFilters(false));
     }
   };
   useEffect(() => {
@@ -231,7 +237,9 @@ export default function SideBar() {
   }, []);
   return (
     <aside
-      className={`${styles.root} ${isMilitary ? styles.military_root : ""}`}
+      className={`${styles.root} ${isMilitary ? styles.military_root : ""} ${
+        showFilters ? styles.show_filters : ""
+      }`}
     >
       <article className={styles.wrapper}>
         {!isMilitary ? (
@@ -366,14 +374,8 @@ export default function SideBar() {
             <button className={styles.search_button} onClick={filterCars}>
               <Image alt="Search" src={Search} width={40} height={40} /> Пoшук
             </button>
-            <button className={styles.add_button}>
-              <Image
-                onClick={addToFavourites}
-                alt="Sub"
-                src={Sub}
-                width={18}
-                height={23}
-              />
+            <button onClick={addToFavourites} className={styles.add_button}>
+              <Image alt="Sub" src={Sub} width={18} height={23} />
             </button>
           </div>
         </div>

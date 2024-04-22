@@ -8,7 +8,7 @@
   place-items: center;
   border-radius: 5px;
   z-index: 1001;
-  width: 250px;
+  width: 270px;
   padding-top: 7%;
   padding-bottom: 5%;
   display: none;
@@ -67,4 +67,26 @@
 
 .military_root {
   background-color: $color-milk;
+}
+
+@media screen and (min-width: 1540px) {
+  .root {
+    width: 340px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .root {
+    .wrapper {
+      .user_logo_block {
+        h3 {
+          font-size: 17px;
+        }
+      }
+      p,
+      a {
+        font-size: 15px;
+      }
+    }
+  }
 }

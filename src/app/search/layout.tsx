@@ -18,7 +18,7 @@ export default function SearchLayout({ children }: SearchProps) {
   return (
     <>
       <Header />
-      <AlertItem text="Successfuly added to saved search!" />
+      <AlertItem text="Успішно додано до збережених!" />
       {children}
     </>
   );

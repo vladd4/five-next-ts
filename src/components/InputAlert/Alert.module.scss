@@ -58,3 +58,39 @@
   opacity: 1;
   pointer-events: auto;
 }
+
+@media screen and (max-width: 1100px) {
+  .root {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .root {
+    width: 55%;
+  }
+}
+@media screen and (max-width: 650px) {
+  .root {
+    width: 85%;
+    .wrapper {
+      h5 {
+        font-size: 20px;
+      }
+      form {
+        input {
+          font-size: 16px;
+        }
+        div {
+          button {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 550px) {
+  .root {
+    width: 95%;
+  }
+}

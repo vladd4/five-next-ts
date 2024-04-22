@@ -100,8 +100,218 @@
       }
     }
   }
+  .wrapper_mobile {
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex-direction: column;
+
+    &:hover .fav_button {
+      opacity: 1;
+    }
+    .fav_button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4%;
+      height: 15%;
+      opacity: 0;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    .car_image {
+      width: 80%;
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 5px;
+    }
+    .car_block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5%;
+      width: 75%;
+
+      .car_info {
+        display: grid;
+        place-items: flex-start;
+        width: 100%;
+        h3 {
+          color: $color-dark-grey;
+          font-size: calc(#{$size}* 1.2);
+          margin: 0;
+          font-weight: 600;
+        }
+        .car_info_icons {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          place-items: flex-start;
+          width: 100%;
+          .icon_div {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            gap: 5%;
+            p {
+              color: $color-dark-grey;
+              font-size: calc(#{$size}/ 1.4);
+              margin: 10% 0%;
+            }
+            img {
+              width: 8%;
+              height: 10%;
+            }
+          }
+        }
+      }
+    }
+    .website_info {
+      display: grid;
+      width: 20%;
+      place-items: flex-start;
+      .website_img {
+        width: 85%;
+        background-position: left;
+        background-size: cover;
+        height: 80px;
+      }
+      p {
+        color: $color-dark-grey;
+        font-size: calc(#{$size}/ 1.2);
+        margin: 7% 0%;
+      }
+    }
+  }
 }
 
 .military_root {
   background-color: $color-milk;
+}
+
+@media screen and (max-width: 1100px) {
+  .root {
+    .wrapper {
+      .car_block {
+        .car_image {
+          height: 180px;
+        }
+      }
+      .website_info {
+        .website_img {
+          height: 50px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 750px) {
+  .root {
+    .wrapper {
+      .car_block {
+        .car_image {
+          height: 150px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .root {
+    margin-bottom: 3%;
+    .wrapper {
+      display: none;
+    }
+    .wrapper_mobile {
+      display: flex;
+      .car_image {
+        height: 350px;
+        width: 100%;
+        margin-bottom: 3%;
+      }
+      .car_block {
+        width: 95%;
+        .car_info {
+          h3 {
+            font-size: 24px;
+          }
+          .car_info_icons {
+            .icon_div {
+              p {
+                font-size: 15px;
+              }
+              img {
+                width: 8%;
+                height: 10%;
+              }
+            }
+          }
+        }
+      }
+      .website_info {
+        width: 30%;
+        .website_img {
+          width: 100%;
+          background-position: left;
+          background-size: cover;
+          height: 70px;
+        }
+        p {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 450px) {
+  .root {
+    .wrapper_mobile {
+      .car_image {
+        height: 250px;
+        width: 100%;
+        margin-bottom: 3%;
+      }
+      .car_block {
+        flex-direction: column;
+        .car_info {
+          width: 100%;
+          .icon_div {
+            p {
+              margin: 5% 0% !important;
+            }
+          }
+        }
+        .website_info {
+          width: 100%;
+          margin: 0% 0%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-direction: row-reverse;
+          .website_img {
+            display: block;
+            width: 50%;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+          p {
+            margin: 3% 0%;
+
+            font-weight: 600;
+            &:first-child {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }

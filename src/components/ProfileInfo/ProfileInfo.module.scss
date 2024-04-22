@@ -135,3 +135,86 @@
     }
   }
 }
+
+@media screen and (max-width: 1100px) {
+  .root {
+    .wrapper {
+      .form_block {
+        .info_input {
+          height: 8svh;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 850px) {
+  .root {
+    .wrapper {
+      .form_block {
+        .form_info,
+        .form_social {
+          width: 45%;
+        }
+        .info_input {
+          .edit_div {
+            img {
+              width: 5%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .root {
+    .wrapper {
+      .form_block {
+        h1 {
+          font-size: 20px;
+        }
+        .form_info,
+        .form_social {
+          width: 50%;
+        }
+        .info_input {
+          height: 80px;
+          label {
+            font-size: 13px;
+          }
+          input {
+            font-size: 15px;
+          }
+          .edit_div {
+            img {
+              width: 5%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 550px) {
+  .root {
+    .wrapper {
+      .form_block {
+        flex-wrap: wrap;
+        .info_input {
+          height: 80px;
+          margin-bottom: 2%;
+          padding: 4%;
+        }
+        .form_info,
+        .form_social {
+          width: 100% !important;
+        }
+        .edit_div {
+          img {
+            width: 4% !important;
+          }
+        }
+      }
+    }
+  }
+}

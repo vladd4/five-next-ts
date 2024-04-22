@@ -11,7 +11,7 @@
   .wrapper {
     width: 85%;
     display: flex;
-    align-items: baseline;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 3%;
   }
@@ -19,4 +19,12 @@
 
 .military_root {
   background-color: $color-dark-green;
+}
+
+@media screen and (max-width: 1300px) {
+  .root {
+    .wrapper {
+      width: 95%;
+    }
+  }
 }

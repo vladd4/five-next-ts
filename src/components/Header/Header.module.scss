@@ -50,3 +50,56 @@
 .military_root {
   background-color: $color-dark-green;
 }
+
+@media screen and (max-width: 1000px) {
+  .root {
+    padding: 3% 0%;
+    .wrapper {
+      .logo {
+        width: 13%;
+      }
+      .icons_block {
+        width: 8%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .root {
+    padding: 3% 0%;
+    .wrapper {
+      .logo {
+        width: 15%;
+      }
+      .icons_block {
+        width: 10%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .root {
+    padding: 4% 0%;
+    .wrapper {
+      .logo {
+        width: 20%;
+      }
+      .icons_block {
+        width: 13%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 450px) {
+  .root {
+    padding: 4.5% 0%;
+    .wrapper {
+      .logo {
+        width: 25%;
+      }
+      .icons_block {
+        width: 18%;
+      }
+    }
+  }
+}

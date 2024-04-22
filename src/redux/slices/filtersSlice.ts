@@ -1,58 +1,87 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 type TValue = {
-  id: number
-  value: string
-}
+  id: number;
+  value: string;
+};
 
 type Filters = {
-  brands: TValue[]
-  models: TValue[]
-  fuel: TValue[]
-  type: TValue[]
-  gear: TValue[]
-  state: TValue[]
-}
+  brands: TValue[];
+  models: TValue[];
+  fuel: TValue[];
+  type: TValue[];
+  gear: TValue[];
+  state: TValue[];
+};
 
 interface FiltersSlice extends Filters {
-  status: 'loading' | 'loaded'
+  status: "loading" | "loaded";
+  showFilters: boolean;
 }
 
-export const fetchBrands = createAsyncThunk<TValue[]>("filters/fetchBrands", async () => {
-  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/brands`);
-  return data.data;
-});
-
-export const fetchModels = createAsyncThunk<TValue[], string>(
-  "filters/fetchModels",
-  async (brand) => {
-    const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/models`, {
-      params: { brand },
-    });
+export const fetchBrands = createAsyncThunk<TValue[]>(
+  "filters/fetchBrands",
+  async () => {
+    const data = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/filters/brands`
+    );
     return data.data;
   }
 );
 
-export const fetchFuel = createAsyncThunk<TValue[]>("filters/fetchFuel", async () => {
-  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/fuel`);
-  return data.data;
-});
+export const fetchModels = createAsyncThunk<TValue[], string>(
+  "filters/fetchModels",
+  async (brand) => {
+    const data = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/filters/models`,
+      {
+        params: { brand },
+      }
+    );
+    return data.data;
+  }
+);
 
-export const fetchGear = createAsyncThunk<TValue[]>("filters/fetchGear", async () => {
-  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/gear`);
-  return data.data;
-});
+export const fetchFuel = createAsyncThunk<TValue[]>(
+  "filters/fetchFuel",
+  async () => {
+    const data = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/filters/fuel`
+    );
+    return data.data;
+  }
+);
 
-export const fetchState = createAsyncThunk<TValue[]>("filters/fetchState", async () => {
-  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/state`);
-  return data.data;
-});
+export const fetchGear = createAsyncThunk<TValue[]>(
+  "filters/fetchGear",
+  async () => {
+    const data = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/filters/gear`
+    );
+    return data.data;
+  }
+);
 
-export const fetchType = createAsyncThunk<TValue[]>("filters/fetchType", async () => {
-  const data = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/filters/type`);
-  return data.data;
-});
+export const fetchState = createAsyncThunk<TValue[]>(
+  "filters/fetchState",
+  async () => {
+    const data = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/filters/state`
+    );
+    return data.data;
+  }
+);
+
+export const fetchType = createAsyncThunk<TValue[]>(
+  "filters/fetchType",
+  async () => {
+    const data = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/filters/type`
+    );
+    return data.data;
+  }
+);
 
 const initialState: FiltersSlice = {
   brands: [],
@@ -62,12 +91,17 @@ const initialState: FiltersSlice = {
   gear: [],
   state: [],
   status: "loading",
+  showFilters: false,
 };
 
 export const filtersSlice = createSlice({
   name: "filters",
   initialState,
-  reducers: {},
+  reducers: {
+    setShowFilters: (state, action: PayloadAction<boolean>) => {
+      state.showFilters = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBrands.pending, (state) => {
@@ -143,7 +177,7 @@ export const filtersSlice = createSlice({
         state.status = "loading";
       });
   },
-  
 });
 
+export const { setShowFilters } = filtersSlice.actions;
 export default filtersSlice.reducer;

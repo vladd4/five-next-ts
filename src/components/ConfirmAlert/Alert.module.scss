@@ -1,0 +1,91 @@
+@import "../../styles/variables";
+
+.root {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  box-shadow: 0px 0px 10px 0px #00000040;
+  transition: all 0.3s;
+  place-items: center;
+  z-index: 1002;
+  width: 35%;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 5px;
+  padding: 2% 0%;
+  background-color: $color-grey;
+  color: $color-white;
+  .wrapper {
+    width: 90%;
+    display: grid;
+    place-items: center;
+    h5 {
+      font-size: calc(#{$size}* 1.1);
+    }
+    .btn_block {
+      width: 100%;
+      display: flex;
+      gap: 3%;
+      align-items: center;
+      margin-top: 3%;
+      justify-content: center;
+      button {
+        flex: 1;
+        border-radius: 5px;
+        border: 1px solid $color-orange;
+        background-color: $color-orange;
+        padding: 2% 0%;
+        font-family: inherit;
+        font-size: calc(#{$size}/ 1.4);
+        color: $color-white;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          opacity: 0.7;
+        }
+        &:first-child {
+          background-color: $color-dark-grey;
+          border: 1px solid $color-dark-grey;
+        }
+      }
+    }
+  }
+}
+
+.show_root {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media screen and (max-width: 1100px) {
+  .root {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .root {
+    width: 55%;
+  }
+}
+@media screen and (max-width: 650px) {
+  .root {
+    width: 85%;
+    .wrapper {
+      h5 {
+        font-size: 20px;
+      }
+
+      button {
+        font-size: 16px !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 550px) {
+  .root {
+    width: 95%;
+    height: 150px;
+  }
+}

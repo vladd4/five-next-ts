@@ -2,7 +2,7 @@
 
 import styles from "./VehicleCards.module.scss";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
 
@@ -14,11 +14,35 @@ import VehicleCard from "./VehicleCard";
 import CarSkeleton from "../CarSkeleton";
 
 import Sort from "@/../public/Sort.png";
+import { setShowFilters } from "@/redux/slices/filtersSlice";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export default function VehicleCards() {
   const isMilitary = useMilitaryPath();
   const { cars, status } = useAppSelector((state) => state.cars);
   const dispatch = useAppDispatch();
+
+  const [showSort, setShowSort] = useState(false);
+
+  const sortRef = useRef(null);
+
+  if (typeof document !== "undefined") {
+    useClickOutside(
+      sortRef,
+      showSort,
+      setShowSort,
+      document?.getElementById("sort-img")
+    );
+  }
+
+  const toggleSort = () => {
+    if (showSort) {
+      setShowSort(false);
+    } else {
+      setShowSort(true);
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchCars());
   }, []);
@@ -29,7 +53,28 @@ export default function VehicleCards() {
           <p>
             Показано {cars && cars.length} оголошень із {cars && cars.length}
           </p>
-          <Image alt="Sort" src={Sort} width={60} height={60} />
+          <Image
+            alt="Sort"
+            src={Sort}
+            width={60}
+            height={60}
+            onClick={toggleSort}
+            id="sort-img"
+          />
+          <div
+            ref={sortRef}
+            className={`${styles.sort_block} ${
+              showSort ? styles.show_sort : ""
+            }`}
+          >
+            <p>Дата додавання</p>
+            <p>Від дешевих до дорогих</p>
+            <p>Від дорогих до дешевих</p>
+            <p>Рік випуску, за зростанням</p>
+            <p>Рік випуску, за спаданням</p>
+            <p>Пробіг, за зростанням</p>
+            <p>Пробіг, за спаданням</p>
+          </div>
         </div>
         <div className={styles.vehicle_cards}>
           {status === "loading" ? (
@@ -70,6 +115,12 @@ export default function VehicleCards() {
             <div className={styles.more}>Далі</div>
           </div>
         ) : null}
+        <button
+          className={styles.filter_btn}
+          onClick={() => dispatch(setShowFilters(true))}
+        >
+          Фільтрувати
+        </button>
       </article>
     </section>
   );

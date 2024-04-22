@@ -60,7 +60,7 @@ export default function ProfileInfo({ user }: ProfileProps) {
             <h1>Інформація</h1>
             <div className={styles.info_input}>
               <div className={styles.edit_div}>
-                <label className={styles.input_label}>First name</label>
+                <label className={styles.input_label}>Name</label>
                 <Image
                   src={EditIcon}
                   alt="Edit"

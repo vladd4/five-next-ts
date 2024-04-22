@@ -3,16 +3,46 @@
 .root {
   width: 100%;
   display: grid;
+  position: relative;
   place-items: center;
   .wrapper {
     width: 100%;
     display: grid;
     place-items: flex-start;
+
     .top_block {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+      .sort_block {
+        position: absolute;
+        top: 85%;
+        right: 2%;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1001;
+        background-color: $color-grey;
+        border-radius: 5px;
+        width: fit-content;
+        display: grid;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+        place-items: flex-start;
+        padding: 2%;
+        transition: all 0.3s;
+        p {
+          width: 100%;
+
+          cursor: pointer;
+
+          font-size: calc(#{$size}/ 1.45);
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+      }
       p {
         color: $color-white;
         font-size: calc(#{$size}/ 1.3);
@@ -72,6 +102,80 @@
       font-size: calc(#{$size}/ 1.3);
       color: $color-white;
       height: 20svh;
+    }
+    .filter_btn {
+      width: 100%;
+      display: none;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      align-items: center;
+      justify-content: center;
+      gap: 2%;
+      background-color: $color-orange;
+      color: $color-white;
+      font-size: calc(#{$size}/ 1.4);
+      border-radius: 5px;
+      border: none;
+      padding: 2% 0%;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        background-color: orange;
+      }
+    }
+  }
+}
+
+.show_sort {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+@media screen and (max-width: 900px) {
+  .root {
+    .wrapper {
+      .filter_btn {
+        display: flex;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .root {
+    .wrapper {
+      .pagination {
+        margin: 2% 0%;
+        div {
+          font-size: 12px;
+        }
+        .more {
+          width: 55px;
+        }
+      }
+      .top_block {
+        margin: 0% 0%;
+        margin-bottom: 2%;
+        p {
+          font-size: 15px;
+          margin: 0;
+        }
+        img {
+          width: 10%;
+        }
+        .sort_block {
+          width: 60%;
+          p {
+            margin: 2% 0%;
+          }
+        }
+      }
+      .filter_btn {
+        font-size: 15px;
+        width: 95%;
+        left: 2.5%;
+      }
     }
   }
 }

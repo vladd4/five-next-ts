@@ -106,8 +106,8 @@
       }
     }
     .delete {
-      width: 30%;
-      height: 30%;
+      width: 17%;
+      height: 17%;
       cursor: pointer;
       transition: all 0.3s;
       &:hover {
@@ -190,5 +190,46 @@
   }
   .selected {
     background: rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .root {
+    .checkbox_div {
+      width: 40%;
+      height: 20px;
+      .circle {
+        height: 18px;
+        width: 18px;
+      }
+    }
+    .delete {
+      width: 25% !important;
+      height: 25% !important;
+    }
+    .checkbox_input {
+      height: 17px;
+      width: 17px;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  .root {
+    .checkbox_div {
+      width: 40%;
+      height: 18px;
+      .circle {
+        height: 16px;
+        width: 16px;
+      }
+    }
+    .delete {
+      width: 23% !important;
+      height: 23% !important;
+    }
+    .checkbox_input {
+      height: 16px;
+      width: 16px;
+    }
   }
 }

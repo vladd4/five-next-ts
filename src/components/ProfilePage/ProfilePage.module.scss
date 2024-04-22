@@ -21,3 +21,21 @@
     }
   }
 }
+
+@media screen and (max-width: 850px) {
+  .root {
+    .wrapper {
+      width: 95%;
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .root {
+    .wrapper {
+      width: 95%;
+      .dynamic_block {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+}

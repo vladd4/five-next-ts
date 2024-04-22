@@ -3,14 +3,21 @@ import styles from "./SavedSearch.module.scss";
 import Image from "next/image";
 
 import {
-  deleteSaved,
+  setEditSaved,
   setSelected,
-  updateSaved,
+  updateSavedTelegram,
 } from "@/redux/slices/savedSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hook";
 
 import Delete from "@/../public/delete-icon.png";
+import Edit from "@/../public/Subtract.png";
+
 import { useEffect, useState } from "react";
+import {
+  setDeletedId,
+  setShowConfirmAlert,
+  setShowEditSaved,
+} from "@/redux/slices/alertSlice";
 
 type SavedCar = {
   save: {
@@ -31,18 +38,16 @@ type SavedCar = {
 
 export default function SavedCar({ save }: SavedCar) {
   const dispatch = useAppDispatch();
-  const handleDelete = (carId: number) => {
-    dispatch(deleteSaved(carId));
-  };
+
   const { selectedSave } = useAppSelector((state) => state.saved);
   const [isToggled, setIsToggled] = useState(false);
 
   const handleToggle = (id: number) => {
     setIsToggled(!isToggled);
     if (isToggled) {
-      dispatch(updateSaved({ savedID: id, params: { telegram: 0 } }));
+      dispatch(updateSavedTelegram({ savedID: id, params: { telegram: 0 } }));
     } else {
-      dispatch(updateSaved({ savedID: id, params: { telegram: 1 } }));
+      dispatch(updateSavedTelegram({ savedID: id, params: { telegram: 1 } }));
     }
   };
   const handleCheck = (id: number) => {
@@ -74,11 +79,23 @@ export default function SavedCar({ save }: SavedCar) {
           <Image
             width={18}
             height={18}
+            alt="Edit icon"
+            src={Edit}
+            className={styles.delete}
+            onClick={() => {
+              dispatch(setShowEditSaved(true));
+              dispatch(setEditSaved(save));
+            }}
+          />
+          <Image
+            width={18}
+            height={18}
             alt="Delete icon"
             src={Delete}
             className={styles.delete}
             onClick={() => {
-              handleDelete(save.id);
+              dispatch(setShowConfirmAlert(true));
+              dispatch(setDeletedId(save.id));
             }}
           />
         </div>

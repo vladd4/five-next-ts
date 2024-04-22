@@ -52,3 +52,41 @@
     }
   }
 }
+
+@media screen and (max-width: 850px) {
+  .root {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 650px) {
+  .root {
+    width: 50%;
+    margin-bottom: 3%;
+    h1 {
+      font-size: 20px;
+    }
+    .wrapper {
+      h2 {
+        font-size: 17px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 550px) {
+  .root {
+    width: 100%;
+    margin-bottom: 3%;
+    h1 {
+      margin-bottom: 3%;
+    }
+    .wrapper {
+      img {
+        width: 40%;
+        height: 40%;
+      }
+    }
+  }
+}

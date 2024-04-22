@@ -30,12 +30,14 @@ export default function UserPopup({ showPopup, setShowPopup }: UserPopup) {
 
   const popupRef = useRef(null);
 
-  useClickOutside(
-    popupRef,
-    showPopup,
-    setShowPopup,
-    document?.getElementById("userPopup")
-  );
+  if (typeof document !== "undefined") {
+    useClickOutside(
+      popupRef,
+      showPopup,
+      setShowPopup,
+      document?.getElementById("userPopup")
+    );
+  }
 
   useEffect(() => {
     if (session) {
@@ -65,7 +67,7 @@ export default function UserPopup({ showPopup, setShowPopup }: UserPopup) {
         <Link href="/search/military" className={styles.military_button}>
           Для військових
         </Link>
-        <p>Повідомлення</p>
+
         <p>Збережені</p>
         <Link href="/profile">Налаштування</Link>
         <p className={styles.exit_button} onClick={() => signOut()}>
