@@ -27,6 +27,7 @@ export const authOptions: NextAuthOptions = {
   jwt: {
     maxAge: 7200,
   },
+
   callbacks: {
     async signIn({ user }) {
       if (!user?.email) {

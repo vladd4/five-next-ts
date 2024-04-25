@@ -193,6 +193,10 @@
   }
 }
 
+.root::-webkit-scrollbar {
+  display: none !important;
+}
+
 @media screen and (max-width: 1100px) {
   .root {
     .checkbox_div {
@@ -204,12 +208,12 @@
       }
     }
     .delete {
-      width: 25% !important;
-      height: 25% !important;
+      width: 23% !important;
+      height: 23% !important;
     }
     .checkbox_input {
-      height: 17px;
-      width: 17px;
+      height: 16px;
+      width: 16px;
     }
   }
 }
@@ -224,12 +228,68 @@
       }
     }
     .delete {
-      width: 23% !important;
-      height: 23% !important;
+      width: 20% !important;
+      height: 20% !important;
     }
     .checkbox_input {
       height: 16px;
       width: 16px;
+    }
+  }
+}
+@media screen and (max-width: 850px) {
+  .root {
+    .checkbox_div {
+      width: 60%;
+      height: 18px;
+      .circle {
+        height: 16px;
+        width: 16px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .root {
+    padding-bottom: 5%;
+    overflow-x: scroll;
+    h1 {
+      font-size: 20px;
+    }
+    .wrapper {
+      width: 1200px;
+      .table {
+        th {
+          font-size: 15px;
+        }
+        td {
+          font-size: 13px;
+        }
+      }
+      .all_buttons {
+        button {
+          font-size: 15px;
+        }
+      }
+    }
+    .checkbox_div {
+      width: 40%;
+      height: 20px;
+      .circle {
+        height: 16px;
+        width: 16px;
+      }
+    }
+    .delete {
+      width: 27% !important;
+      height: 27% !important;
+    }
+    .checkbox_input {
+      height: 18px;
+      width: 18px;
+      span {
+        font-size: 10px;
+      }
     }
   }
 }

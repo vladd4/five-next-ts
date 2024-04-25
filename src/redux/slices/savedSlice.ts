@@ -1,6 +1,24 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
+type Car = {
+  car_id: string;
+  brand: string;
+  model: string;
+  year: string;
+  price: string;
+  mileage: string;
+  photo_url: string;
+  gearbox: string;
+  fuel: string;
+  type: string;
+  power: string;
+  site_name: string;
+  site_photo_url: string;
+  state: string;
+  link: string;
+};
+
 type AddSavedItem = {
   client_id: number;
   brand_id?: number;
@@ -52,6 +70,7 @@ type SavedSlice = {
   saved: SavedItem[];
   selectedSave: number[];
   editSaved: SavedItem | null;
+  savedCars: Car[];
   status: "loading" | "loaded";
 };
 
@@ -98,6 +117,16 @@ export const fetchSaved = createAsyncThunk<SavedItem[], number>(
   }
 );
 
+export const fetchSavedCars = createAsyncThunk<Car[], number>(
+  "saved/fetchSavedCars",
+  async (userID) => {
+    const data = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/saved/cars/${userID}`
+    );
+    return data.data;
+  }
+);
+
 export const deleteSaved = createAsyncThunk<number, number>(
   "saved/deleteSaved",
   async (savedID) => {
@@ -112,6 +141,7 @@ const initialState: SavedSlice = {
   saved: [],
   selectedSave: [],
   editSaved: null,
+  savedCars: [],
   status: "loading",
 };
 
@@ -189,6 +219,16 @@ export const savedSlice = createSlice({
         state.status = "loaded";
       })
       .addCase(updateSaved.rejected, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchSavedCars.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchSavedCars.fulfilled, (state, action) => {
+        state.savedCars = action.payload;
+        state.status = "loaded";
+      })
+      .addCase(fetchSavedCars.rejected, (state) => {
         state.status = "loading";
       });
   },

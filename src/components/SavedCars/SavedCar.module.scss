@@ -1,0 +1,14 @@
+@import "../../styles/variables";
+
+.root {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 3% 0%;
+  background-color: $color-dark-grey;
+  .wrapper {
+    width: 90%;
+    display: grid;
+    place-items: flex-start;
+  }
+}

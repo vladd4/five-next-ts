@@ -6,8 +6,8 @@ import { redirect } from "next/navigation";
 export default async function MilitaryPage() {
   const session = await checkSession();
 
-  if (!session) {
-    redirect("/");
-  }
+  // if (!session) {
+  //   redirect("/");
+  // }
   return <SearchPage />;
 }

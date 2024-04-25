@@ -23,6 +23,7 @@ export default function WelcomeBlock() {
       alert("Щось пішло не так! Спробуйте пізніше.");
     }
   };
+
   return (
     <section className={styles.root}>
       <article className={styles.wrapper}>

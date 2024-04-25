@@ -13,13 +13,16 @@ import Message from "@/../public/message.png";
 import User from "@/../public/user.png";
 
 import UserPopup from "./UserPopup";
-import { redirect } from "next/navigation";
 import Link from "next/link";
+import { fetchCars } from "@/redux/slices/carsSlice";
+import { useAppDispatch } from "@/hooks/redux-hook";
 
 export default function Header() {
   const [showPopup, setShowPopup] = useState(false);
 
   const isMilitary = useMilitaryPath();
+
+  const dispatch = useAppDispatch();
 
   const handleShowPopup = () => {
     setShowPopup(!showPopup);
@@ -30,7 +33,7 @@ export default function Header() {
       className={`${styles.root} ${isMilitary ? styles.military_root : ""}`}
     >
       <article className={styles.wrapper}>
-        <Link href="/search">
+        <Link href="/search" onClick={() => dispatch(fetchCars(1))}>
           <Image
             alt="FiVe"
             src={Logo}
@@ -41,7 +44,9 @@ export default function Header() {
           />
         </Link>
         <div className={styles.icons_block}>
-          <Image alt="Message" src={Message} width={33} height={30} />
+          <Link href="/saved">
+            <Image alt="Message" src={Message} width={33} height={30} />
+          </Link>
           <Image
             alt="User"
             src={User}

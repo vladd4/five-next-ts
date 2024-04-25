@@ -150,6 +150,10 @@
           p {
             font-size: 15px;
           }
+          .circle {
+            width: 15px;
+            height: 15px;
+          }
         }
       }
       .text_block {
@@ -173,6 +177,34 @@
               margin-bottom: 0;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .root {
+    .wrapper {
+      .steps_block {
+        .step_div {
+          p {
+            font-size: 15px;
+          }
+        }
+        .line {
+          width: 90% !important;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 450px) {
+  .root {
+    .wrapper {
+      .steps_block {
+        .line {
+          width: 88% !important;
         }
       }
     }

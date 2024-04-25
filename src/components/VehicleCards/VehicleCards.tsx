@@ -16,13 +16,20 @@ import CarSkeleton from "../CarSkeleton";
 import Sort from "@/../public/Sort.png";
 import { setShowFilters } from "@/redux/slices/filtersSlice";
 import useClickOutside from "@/hooks/useClickOutside";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function VehicleCards() {
   const isMilitary = useMilitaryPath();
-  const { cars, status } = useAppSelector((state) => state.cars);
+  const { cars, status, totalPage, currentPage } = useAppSelector(
+    (state) => state.cars
+  );
   const dispatch = useAppDispatch();
 
   const [showSort, setShowSort] = useState(false);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const sortRef = useRef(null);
 
@@ -44,7 +51,11 @@ export default function VehicleCards() {
   };
 
   useEffect(() => {
-    dispatch(fetchCars());
+    if (searchParams.get("page")) {
+      dispatch(fetchCars(Number(searchParams.get("page"))));
+    } else {
+      dispatch(fetchCars(1));
+    }
   }, []);
   return (
     <section className={styles.root}>
@@ -104,15 +115,31 @@ export default function VehicleCards() {
             <div className={styles.not_found}>Таких авто не знайдено!</div>
           )}
         </div>
-        {cars && cars.length > 1 ? (
+        {totalPage && totalPage >= 1 ? (
           <div className={styles.pagination}>
-            <div className={styles.active_page}>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-            <div className={styles.more}>Далі</div>
+            {Array.from({ length: totalPage }, (_, index) => (
+              <div
+                key={index}
+                className={index + 1 === currentPage ? styles.active_page : ""}
+                onClick={() => {
+                  router.push(pathname + "?" + `page=${index + 1}`);
+                  dispatch(fetchCars(index + 1));
+                }}
+              >
+                {index + 1}
+              </div>
+            ))}
+            <div
+              onClick={() => {
+                if (currentPage + 1 <= totalPage) {
+                  router.push(pathname + "?" + `page=${currentPage + 1}`);
+                  dispatch(fetchCars(currentPage + 1));
+                }
+              }}
+              className={styles.more}
+            >
+              Далі
+            </div>
           </div>
         ) : null}
         <button
