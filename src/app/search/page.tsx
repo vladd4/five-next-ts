@@ -4,7 +4,7 @@ import { checkSession } from "@/utils/chechSession";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-  const session = await checkSession();
+  // const session = await checkSession();
 
   // if (!session) {
   //   redirect("/");
