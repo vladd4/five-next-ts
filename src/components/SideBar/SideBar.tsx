@@ -163,7 +163,7 @@ export default function SideBar() {
   };
   const clearFilter = () => {
     dispatch(setShowFilters(false));
-    dispatch(fetchCars());
+    dispatch(fetchCars(1));
     setBrand("brand");
     setFuel("fuel");
     setType("type");
